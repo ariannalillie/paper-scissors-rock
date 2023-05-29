@@ -60,6 +60,7 @@ fun computerChoice(): Int {
     return random.nextInt(2)
 }
 
+// determineWin provides the user with feedback about the outcome of the game
 fun determineWin(computerChoice: Int, userChoice: Int) {
     if (userChoice > 3 || userChoice < 0) {
         println("Invalid choice")
@@ -76,6 +77,7 @@ fun determineWin(computerChoice: Int, userChoice: Int) {
     }
 }
 
+// keepPlaying returns a boolean value about whether the user would like to continue playing
 fun keepPlaying(): Boolean {
     print("Do you want to continue playing? Type Y for Yes and N for No: ")
     val userChoice = readlnOrNull()
