@@ -28,17 +28,22 @@ const val scissors = """
 """
 
 fun main() {
-    val gameImages = listOf<String>(rock, paper, scissors)
-    val userChoice = userChoice()
-    val computerChoice = computerChoice()
-    if (userChoice != null) {
-        if (userChoice in 0..2) {
-            println("You:")
-            println(gameImages[userChoice])
-            println("Computer:")
-            println(gameImages[computerChoice])
+    val gameImages = listOf(rock, paper, scissors)
+    var continueGame = true
+
+    while (continueGame) {
+        val userChoice = userChoice()
+        val computerChoice = computerChoice()
+        if (userChoice != null) {
+            if (userChoice in 0..2) {
+                println("You:")
+                println(gameImages[userChoice])
+                println("Computer:")
+                println(gameImages[computerChoice])
+            }
+            determineWin(computerChoice, userChoice)
         }
-        determineWin(computerChoice, userChoice)
+        continueGame = keepPlaying()
     }
 }
 
@@ -69,4 +74,10 @@ fun determineWin(computerChoice: Int, userChoice: Int) {
     } else {
         println("It's a draw! Play again.")
     }
+}
+
+fun keepPlaying(): Boolean {
+    print("Do you want to continue playing? Type Y for Yes and N for No: ")
+    val userChoice = readlnOrNull()
+    return userChoice.equals("Y", ignoreCase = true)
 }
